@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ContactManager</string>
+    <string name="edit_text_lastname">Nom</string>
+    <string name="edit_text_firstname">Prénom</string>
+    <string name="edit_text_emailAddress">courriel</string>
+    <string name="edit_text_phone_number">Numéro de téléphone</string>
+    <string name="button_register">Enregistré le contact</string>
+</resources>
