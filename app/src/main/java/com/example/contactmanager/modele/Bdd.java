@@ -3,22 +3,22 @@ package com.example.contactmanager.modele;
 import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
-public class Bdd extends AsyncTask<String, Void, String> {
-    String res;
+public class Bdd extends AsyncTask<ArrayList<Contact>, Void, ArrayList<Contact>> {
+Connection con = null;
+Statement st = null;
+ResultSet rs = null;
+ResultSetMetaData rsmd = null;
     @Override
-    protected String doInBackground(String... strings) {
-        Connection con = null;
-        Statement st = null;
-        ResultSet rs = null;
-        ResultSetMetaData rsmd = null;
+    protected ArrayList<Contact> doInBackground(ArrayList<Contact>... ArrayLists) {
+        ArrayList<Contact> contactArrayList = new ArrayList<>();
         try {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
@@ -27,14 +27,18 @@ public class Bdd extends AsyncTask<String, Void, String> {
             String result = "Database Connection Successful\n";
             Log.d("BDD", "doInBackground: Connection Reussite");
             st = con.createStatement();
-            rs = st.executeQuery("SELECT lastname, firstname, email, phonenumber FROM contact;");
+            rs = st.executeQuery("SELECT * FROM contact;");
             rsmd = rs.getMetaData();
-
             while (rs.next()) {
-                result += rs.getString(1).toString() + " " + rs.getString(2).toString() + " " + rs.getString(3).toString() + "\n";
+                Contact contact = new Contact(
+                        rs.getInt("id"),
+                        rs.getString("firstname"),
+                        rs.getString("lastname"),
+                        rs.getString("email"),
+                        rs.getString("phonenumber")
+                        );
+                contactArrayList.add(contact);
             }
-            res = result;
-            Log.d("BDD", "doInBackground: " + res);
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -56,6 +60,6 @@ public class Bdd extends AsyncTask<String, Void, String> {
                 st = null;
             }
         }
-        return res;
+        return contactArrayList;
     }
 }

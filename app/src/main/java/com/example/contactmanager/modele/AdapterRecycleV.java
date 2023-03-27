@@ -1,17 +1,22 @@
 package com.example.contactmanager.modele;
 
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.contactmanager.R;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class AdapterRecycleV extends RecyclerView.Adapter<AdapterRecycleV.ViewHolder> {
     private String[] localDataSet;
+    //AsyncTask<ArrayList<Contact>, Void, ArrayList<Contact>> contacts;
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;

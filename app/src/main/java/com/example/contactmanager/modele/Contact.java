@@ -1,13 +1,13 @@
 package com.example.contactmanager.modele;
 
-public class contact {
+public class Contact {
     private Integer id;
     private String firstname;
     private String lastname;
     private String email;
     private String phoneNumber;
 
-    public contact(Integer id, String firstname, String lastname, String email, String phoneNumber) {
+    public Contact(Integer id, String firstname, String lastname, String email, String phoneNumber) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
