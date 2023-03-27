@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Accede à la base de données et teste la récupération.
         Bdd bdd = new Bdd();
         contacts = bdd.execute();
         try {
