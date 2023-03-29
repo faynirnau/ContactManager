@@ -1,11 +1,13 @@
 package com.example.contactmanager.controler;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.FrameLayout;
 
 import com.example.contactmanager.R;
 import com.example.contactmanager.modele.AdapterRecycleV;
@@ -22,16 +24,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        contactList = findViewById(R.id.recycleViewContacts);
         //Accede à la base de données et teste la récupération.
         Bdd bdd = new Bdd();
         contacts = bdd.execute();
         try {
-            String dataSet = contacts.get().get(0).getFirstname().toString();
-            Log.d("bdd", dataSet);
+            for (Contact contact:
+                    contacts.get()){
+                Log.d("BDD", contact.getFirstname());
+                Log.d("BDD", contact.getLastname());
+                Log.d("BDD", contact.getEmail());
+                Log.d("BDD", contact.getPhoneNumber());;
+            }
         } catch (ExecutionException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-        contactList = findViewById(R.id.recycleViewContacts);
-        contactList.setAdapter(new AdapterRecycleV());
+
+        contactList.setAdapter(new AdapterRecycleV(this, contacts));
+        contactList.setLayoutManager(new LinearLayoutManager(this));
     }
 }
