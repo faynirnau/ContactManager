@@ -22,7 +22,6 @@ public class AdapterRecycleV extends RecyclerView.Adapter<AdapterRecycleV.ViewHo
         this.context = context;
         this.contacts = contacts;
     }
-    private String[] localDataSet;
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
 
@@ -37,10 +36,6 @@ public class AdapterRecycleV extends RecyclerView.Adapter<AdapterRecycleV.ViewHo
             return textView;
         }
     }
-    public void CustomAdapter(String[] dataSet) {
-        localDataSet = dataSet;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

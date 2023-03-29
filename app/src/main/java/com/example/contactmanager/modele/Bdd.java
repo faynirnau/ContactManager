@@ -16,6 +16,15 @@ Connection con = null;
 Statement st = null;
 ResultSet rs = null;
 ResultSetMetaData rsmd = null;
+
+    public Statement getSt() {
+        return st;
+    }
+
+    public ResultSet getRs() {
+        return rs;
+    }
+
     @Override
     protected ArrayList<Contact> doInBackground(ArrayList<Contact>... ArrayLists) {
         ArrayList<Contact> contactArrayList = new ArrayList<>();
@@ -25,7 +34,7 @@ ResultSetMetaData rsmd = null;
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://10.0.2.2:3306/contactmanager", "root", "root");
             String result = "Database Connection Successful\n";
-            Log.d("BDD", "doInBackground: Connection Reussite");
+            //Log.d("BDD", "doInBackground: Connection Reussite");
             st = con.createStatement();
             rs = st.executeQuery("SELECT * FROM contact;");
             rsmd = rs.getMetaData();
