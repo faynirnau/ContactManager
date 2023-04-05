@@ -1,6 +1,8 @@
 package com.example.contactmanager.modele;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable {
     private Integer id;
     private String firstname;
     private String lastname;
