@@ -1,8 +1,6 @@
 package com.example.contactmanager.modele;
 
 import android.content.Context;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.contactmanager.R;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class AdapterRecycleV extends RecyclerView.Adapter<AdapterRecycleV.ViewHolder> {
 
     private final Context context;
-    private final ArrayList<Contact> contacts;
+    private ArrayList<Contact> contacts;
 
     public AdapterRecycleV(Context context, ArrayList<Contact> contacts){
         this.context = context;
+        setContacts(contacts);
+    }
+    public void setContacts(ArrayList<Contact> contacts){
         this.contacts = contacts;
     }
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -2,6 +2,7 @@ package com.example.contactmanager.controler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -31,12 +32,14 @@ public class AddContactActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_add_contact);
+        //Création des instances de mes éléments de layout.
         backButton = findViewById(R.id.imageButtonBackButton);
         lastname = findViewById(R.id.editTextTextPersonLastname);
         firstname = findViewById(R.id.editTextTextPersonFirstname);
         emailAddress = findViewById(R.id.editTextTextEmailAddress);
         phoneNumber = findViewById(R.id.editTextPhone);
         addContact = findViewById(R.id.buttonAddContact);
+        //Ajout d'un contact dans la liste de contacts avec les données renseignées, en objet.
         addContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +50,7 @@ public class AddContactActivity extends AppCompatActivity {
                         emailAddress.getText().toString(),
                         phoneNumber.getText().toString()
                 ));
+                //Vérification de la bonne création de l'objet.
                 for (Contact contact :
                         contactList) {
                     Log.d("Contact", contact.getId().toString());
@@ -55,8 +59,10 @@ public class AddContactActivity extends AppCompatActivity {
                     Log.d("Contact", contact.getEmail());
                     Log.d("Contact", contact.getPhoneNumber());
                 }
-                Intent intent = new Intent(AddContactActivity.this, MainActivity.class);
-                startActivity(intent);
+                Intent resultIntent = new Intent(AddContactActivity.this,MainActivity.class);
+                resultIntent.putExtra("updatedData", contactList);
+                setResult(Activity.RESULT_OK, resultIntent);
+                startActivity(resultIntent);
                 finish();
             }
         });

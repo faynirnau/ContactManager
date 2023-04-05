@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.Adapter;
 import android.widget.ImageButton;
 
 import com.example.contactmanager.R;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     static RecyclerView contactList;
     static ArrayList<Contact> contacts;
     ImageButton addContactButton;
+    AdapterRecycleV adapterRecycleView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
 //                Log.d("BDD", contact.getEmail());
 //                Log.d("BDD", contact.getPhoneNumber());
 //            }
-            contactList.setAdapter(new AdapterRecycleV(this, contacts));
+            adapterRecycleView = new AdapterRecycleV(this, contacts);
+            contactList.setAdapter(adapterRecycleView);
             contactList.setLayoutManager(new LinearLayoutManager(this));
 
             addContactButton = findViewById(R.id.imageButtonAddContact);
@@ -57,4 +61,25 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
     }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        // Mettre à jour les données dans l'adaptateur RecyclerView ici
+        adapterRecycleView.notifyDataSetChanged();
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
+            // Récupérer les données mises à jour depuis l'objet Intent
+            Bundle extras = data.getExtras();
+            if (extras != null) {
+                ArrayList<Contact> updatedData = (ArrayList<Contact>) extras.getSerializable("updatedData");
+                // Mettre à jour les données dans l'adaptateur RecyclerView ici
+                adapterRecycleView.setContacts(updatedData);
+            }
+        }
+    }
+
 }
