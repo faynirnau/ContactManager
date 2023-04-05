@@ -16,9 +16,9 @@ import java.util.concurrent.ExecutionException;
 public class AdapterRecycleV extends RecyclerView.Adapter<AdapterRecycleV.ViewHolder> {
 
     private final Context context;
-    private final AsyncTask<ArrayList<Contact>, Void, ArrayList<Contact>> contacts;
+    private final ArrayList<Contact> contacts;
 
-    public AdapterRecycleV(Context context, AsyncTask<ArrayList<Contact>, Void, ArrayList<Contact>> contacts){
+    public AdapterRecycleV(Context context, ArrayList<Contact> contacts){
         this.context = context;
         this.contacts = contacts;
     }
@@ -47,20 +47,13 @@ public class AdapterRecycleV extends RecyclerView.Adapter<AdapterRecycleV.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        try {
-            String contact = contacts.get().get(position).getFirstname() +" "+ contacts.get().get(position).getLastname();
-            holder.getTextView().setText(contact);
-        } catch (ExecutionException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        String contact = contacts.get(position).getFirstname() +" "+ contacts.get(position).getLastname();
+        holder.getTextView().setText(contact);
+
     }
 
     @Override
     public int getItemCount() {
-        try {
-            return contacts.get().size();
-        } catch (ExecutionException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        return contacts.size();
     }
 }

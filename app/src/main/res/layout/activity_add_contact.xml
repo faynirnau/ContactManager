@@ -12,13 +12,14 @@
         android:layout_height="50dp"
         android:layout_marginTop="100dp"
         android:ems="10"
+        android:hint="@string/edit_text_lastname"
         android:inputType="textPersonName"
-        android:text="@string/edit_text_lastname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="Autofill,LabelFor" />
+        tools:ignore="Autofill,LabelFor"
+        tools:text="@string/edit_text_lastname" />
 
     <EditText
         android:id="@+id/editTextTextPersonFirstname"
@@ -26,12 +27,13 @@
         android:layout_height="50dp"
         android:layout_marginTop="100dp"
         android:ems="10"
+        android:hint="@string/edit_text_firstname"
         android:inputType="textPersonName"
-        android:text="@string/edit_text_firstname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonLastname"
-        tools:ignore="Autofill,LabelFor" />
+        tools:ignore="Autofill,LabelFor"
+        tools:text="@string/edit_text_firstname" />
 
     <EditText
         android:id="@+id/editTextTextEmailAddress"
@@ -39,13 +41,14 @@
         android:layout_height="50dp"
         android:layout_marginTop="100dp"
         android:ems="10"
+        android:hint="@string/edit_text_emailAddress"
         android:inputType="textEmailAddress"
-        android:text="@string/edit_text_emailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonFirstname"
-        tools:ignore="Autofill,LabelFor" />
+        tools:ignore="Autofill,LabelFor"
+        tools:text="@string/edit_text_emailAddress" />
 
     <EditText
         android:id="@+id/editTextPhone"
@@ -53,15 +56,16 @@
         android:layout_height="50dp"
         android:layout_marginTop="100dp"
         android:ems="10"
+        android:hint="@string/edit_text_phone_number"
         android:inputType="phone"
-        android:text="@string/edit_text_phone_number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-        tools:ignore="Autofill,LabelFor" />
+        tools:ignore="Autofill,LabelFor"
+        tools:text="@string/edit_text_phone_number" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonAddContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -69,4 +73,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButtonBackButton"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/design_default_color_primary"
+        android:contentDescription="@string/back_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        app:tint="@color/white" />
 </androidx.constraintlayout.widget.ConstraintLayout>
