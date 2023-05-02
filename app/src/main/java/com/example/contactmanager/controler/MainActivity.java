@@ -65,13 +65,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume(){
         super.onResume();
         // Mettre à jour les données dans l'adaptateur RecyclerView ici
+        Log.d("ICI", "je passe ici 0");
         adapterRecycleView.notifyDataSetChanged();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        Log.d("ICI", "je passe ici1");
         if (requestCode == 0 && resultCode == Activity.RESULT_OK) {
+            Log.d("ICI", "je passe ici");
             // Récupérer les données mises à jour depuis l'objet Intent
             Bundle extras = data.getExtras();
             if (extras != null) {
